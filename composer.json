@@ -1,0 +1,31 @@
+{
+	"name": "iambib/collection-extender",
+	"description": "Laravel/Lumen 9+ Collection Extender",
+	"license": "BSD-3-Clause",
+	"homepage": "",
+	"minimum-stability": "dev",
+	"version": "1.0.0",
+	"require": {
+		"php": ">=8.0",
+		"ext-json": "*",
+		"ext-curl": "*",
+		"illuminate/collections": ">=9.0"
+
+	},
+	"suggest": {
+	},
+	"require-dev" : {
+	},
+	"autoload": {
+		"psr-4": {
+			"iAmBiB\\CollectionExtender\\" : "src/"
+		}
+	},
+	"extra": {
+        "laravel": {
+            "providers": [
+                "iAmBiB\\CollectionExtender\\AppServiceProvider"
+            ]
+        }
+    }
+}
