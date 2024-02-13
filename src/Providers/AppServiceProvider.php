@@ -64,16 +64,10 @@ class AppServiceProvider extends ServiceProvider
         //## PUSH TO KEY ###
         Collection::macro('pushToKey', function (mixed $key, mixed $value, bool $recursive = false)
         {
-            if (!$this->get($key, null) !== null)
-            {
-                $value = $recursive ? collect([$value])->recursive() : [$value];
-
-                return $this->put($key, $value);
-            }
             $value = !\is_array($value) ? [$value] : $value;
-            $cur_value = !\is_array($this->get($key)) ? [$this->get($key)] : $this->get($key);
+            $cur_value = !\is_array($this->get($key, [])) ? [$this->get($key, [])] : $this->get($key, []);
             $mergedValue = array_merge($cur_value, $value);
-            $mergedValue = $recursive ?? collect($mergedValue)->recursive();
+            $mergedValue = $recursive ? collect($mergedValue)->recursive() : $mergedValue;
 
             return $this->put($key, $mergedValue);
         });
