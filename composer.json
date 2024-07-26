@@ -24,7 +24,7 @@
 	"extra": {
         "laravel": {
             "providers": [
-                "iAmBiB\\CollectionExtender\\AppServiceProvider"
+                "iAmBiB\\CollectionExtender\\Providers\\AppServiceProvider"
             ]
         }
     }
