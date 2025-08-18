@@ -102,7 +102,7 @@ class AppServiceProvider extends ServiceProvider
             return data_get($arr, $keys, $default);
         });
 
-        //## INPUT ###
+        //## morphTo ###
 
         Collection::macro('morphTo', function (string $object_class)
         {
@@ -110,6 +110,38 @@ class AppServiceProvider extends ServiceProvider
             $object = Cast::castArray($arr, ['attributes' => $object_class]);
 
             return $object;
+        });
+        //## whereArrayContains ###
+        Collection::macro('whereArrayContains', function (string $arrKey, string $value)
+        {
+            $filtered = $this->filter(function ($item) use ($arrKey, $value)
+            {
+                $arr = data_get($item, $arrKey);
+                if ($arr)
+                {
+                    $arr = collect($arr)->toArray();
+
+                    return \in_array($value, $arr) ?? $item;
+                }
+            });
+
+            return $filtered;
+        });
+        //## whereArrayDoesntContain ###
+        Collection::macro('whereArrayDoesntContain', function (string $arrKey, $value)
+        {
+            $filtered = $this->filter(function ($item) use ($arrKey, $value)
+            {
+                $arr = data_get($item, $arrKey);
+                if ($arr)
+                {
+                    $arr = collect($arr)->toArray();
+
+                    return !\in_array($value, $arr) ?? $item;
+                }
+            });
+
+            return $filtered;
         });
     }
 }
