@@ -32,6 +32,10 @@ $collection->input($keys,?$default);
 
 $collection->morphTo($object_class)
 
+$collection->whereArrayContains('foo', 'bar');
+
+$collection->whereArrayDoesntContain('foo', 'bar');
+
 ```
 
 ## Examples
