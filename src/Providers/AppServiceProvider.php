@@ -73,7 +73,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         //## TO MODEL ###
-        Collection::macro('toModel', function (string $model_class = null)
+        Collection::macro('toModel', function (?string $model_class = null)
         {
             if (!$model_class)
             {
@@ -95,7 +95,7 @@ class AppServiceProvider extends ServiceProvider
 
         //## INPUT ###
 
-        Collection::macro('input', function (string $keys, $default = null)
+        Collection::macro('input', function (string $keys, mixed $default = null)
         {
             $arr = collect($this)->toArray();
 
